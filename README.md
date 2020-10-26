@@ -1,7 +1,9 @@
 # Ansible | Packer | Terraform 
 
 Deplyed AWS EC2 Linux instance for exercise.
+
 Rember to create Key pair and copy it to machine for use with installation deployed using Ansible etc.
+
 Remember to create an [Access Key](https://console.aws.amazon.com/iam/home?#/security_credentials) for exercise use.
 
 ## Ansible installation
