@@ -12,8 +12,7 @@ wget https://releases.hashicorp.com/packer/1.5.4/packer_1.5.4_linux_amd64.zip
 sudo unzip packer_1.5.4_linux_amd64.zip -d /usr/local/bin
 ```
 # Terraform installation
-[Doc]
-(https://learn.hashicorp.com/tutorials/terraform/install-cli)
+[Doc](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 ```bash
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
@@ -29,3 +28,48 @@ pip install boto3
 sudo /usr/bin/python -m easy_install pip
 sudo /usr/bin/python -m pip install boto
 ```
+# AWS Configure for setup of AWS ACCESS Key etc. for use with for ex. Ansible
+```bash
+aws configure
+```
+AWS ACCESS Key ID: 
+...
+```bash
+aws configure list
+```
+# Ansible - Setup EC2 instance with security group
+# using Amazon extras, systemd for services
+# using geerlingguy java role from Ansible Galaxy
+[galaxy.ansible.com](https://galaxy.ansible.com/geerlingguy/java)
+```bash
+ansible-galaxy install geerlingguy.java
+ansible-playbook -i hosts ec2-java-tomcat.yml
+```
+# Packer AMI - simple AMI deployment for use with terraform later
+```bash
+packer build ec2-aws-instance.js
+```
+You can check ami id in AWS or copy from terminal
+
+# Use terraform to deploy multiple instances of AMI
+```bash
+mkdir terraform
+vi main.tf
+terraform init
+terraform plan
+terraform apply
+```
+You can remove created resources using
+```bash
+terraform destroy
+```
+# Use terraform to deploy lambda function (simple hello-world)
+```bash
+zip helloworld helloworld.py
+terraform init
+terraform plan
+terraform apply
+```
+You can remove created resources using
+```bash
+terraform destroy
